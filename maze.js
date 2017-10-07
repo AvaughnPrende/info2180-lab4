@@ -36,6 +36,10 @@ window.onload = function(){
 		beganMaze = true;
 	});
 
+	start.addEventListener("click", function(){
+		location.reload();
+	})
+
 	end.addEventListener("mouseover", function(){
 		endedMaze = true;
 
