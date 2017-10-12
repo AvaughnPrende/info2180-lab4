@@ -28,6 +28,8 @@ window.onload = function(){
 	for (i=0;i<boundaries.length;i++){
 		boundaries[i].addEventListener("mouseover", function(element){
 			
+		document.getElementById("status").innerHTML = "YOU LOSE";
+
 			for (i=0;i<boundaries.length;i++){
 				boundaries[i].classList.add("youlose")
 			}
@@ -50,9 +52,7 @@ window.onload = function(){
 
 		if (beganMaze && touchedNoBoundaries){
 			document.getElementById("status").innerHTML = "YOU WIN";
-		} else {
-			document.getElementById("status").innerHTML = "YOU LOSE";;
-		}
+		} 
 	});
 
 	maze.onmouseleave = function(){
@@ -61,6 +61,3 @@ window.onload = function(){
 		}
 	}
 }
-
-
-
