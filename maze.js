@@ -44,10 +44,10 @@ window.onload = function(){
 		endedMaze = true;
 
 		if (beganMaze && touchedNoBoundaries){
-			window.alert("YOU WIN");
+			document.getElementById("status").innerHTML = "YOU WIN";
+		} else {
+			document.getElementById("status").innerHTML = "YOU LOSE";;
 		}
 	});
 }
-
-
 
