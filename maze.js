@@ -22,14 +22,19 @@ window.onload = function(){
 	start = document.getElementById("start");
 	end   = document.getElementById("end");
 	boundaries = document.querySelectorAll(".boundary");
+	maze = document.getElementById("maze");
 
 	//Boundary changes to red when a mouse touches it
 	for (i=0;i<boundaries.length;i++){
 		boundaries[i].addEventListener("mouseover", function(element){
-			this.classList.add("youlose");
+			
+			for (i=0;i<boundaries.length;i++){
+				boundaries[i].classList.add("youlose")
+			}
 			touchedNoBoundaries = false;
 		});
 	};
+
 
 	//Alert Box pops up when game is won;
 	start.addEventListener("mouseover", function(){
@@ -49,5 +54,13 @@ window.onload = function(){
 			document.getElementById("status").innerHTML = "YOU LOSE";;
 		}
 	});
+
+	maze.onmouseleave = function(){
+		if (beganMaze === true){
+			document.getElementById("status").innerHTML = "YOU LOSE: YOU LEFT THE MAZE";
+		}
+	}
 }
+
+
 
