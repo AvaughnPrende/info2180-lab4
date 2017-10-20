@@ -19,10 +19,17 @@ touchedNoBoundaries = true;
 
 window.onload  = function(){
 
+<<<<<<< HEAD
 	start      = document.getElementById("start");
 	end        = document.getElementById("end");
 	boundaries = document.querySelectorAll('.boundary:not(.example)');
 	maze       = document.getElementById("maze");
+=======
+	start = document.getElementById("start");
+	end   = document.getElementById("end");
+	boundaries = document.querySelectorAll(".boundary");
+	maze = document.getElementById("maze");
+>>>>>>> Task 6 completed: Cheating Disallowed
 
 
 	function touchWallMessage(){
@@ -51,6 +58,7 @@ window.onload  = function(){
 			document.getElementById("status").innerHTML = "YOU WIN";
 			removeListeners();
 		}
+<<<<<<< HEAD
 	}
 
 	function locationReload(){
@@ -87,3 +95,16 @@ window.onload  = function(){
 
 	maze.addEventListener("mouseleave", exitMazeMessage);
 }
+=======
+	});
+
+	maze.onmouseleave = function(){
+		if (beganMaze === true){
+			document.getElementById("status").innerHTML = "YOU LOSE: YOU LEFT THE MAZE";
+		}
+	}
+}
+
+
+
+>>>>>>> Task 6 completed: Cheating Disallowed
