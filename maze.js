@@ -24,24 +24,22 @@ window.onload  = function(){
 	boundaries = document.querySelectorAll('.boundary:not(.example)');
 	maze       = document.getElementById("maze");
 
-	//Boundary changes to red when a mouse touches it
-	for (i=0;i<boundaries.length;i++){
-		boundaries[i].addEventListener("mouseover", turnWallsRed);
-
 
 	function touchWallMessage(){
 		document.getElementById("status").innerHTML = "YOU LOSE: YOU TOUCHED THE WALL";
+		removeListeners();
 	}
 
 	function turnWallsRed(){
-		touchWallMessage();
-		touchedNoBoundaries = false;
+		if (beganMaze){
+			touchWallMessage();
+			touchedNoBoundaries = false;
 
-		for (i=0;i<boundaries.length;i++){
-				boundaries[i].classList.add("youlose")
+			for (i=0;i<boundaries.length;i++){
+					boundaries[i].classList.add("youlose")
+				}
 			}
 		}
-	}
 
 	function changeBeganMazeValue(){
 		beganMaze = true;
@@ -51,6 +49,7 @@ window.onload  = function(){
 		endedMaze = true;
 		if (beganMaze && touchedNoBoundaries){
 			document.getElementById("status").innerHTML = "YOU WIN";
+			removeListeners();
 		}
 	}
 
@@ -59,13 +58,25 @@ window.onload  = function(){
 	}
 
 	function exitMazeMessage(){
-		if (beganMaze === true){
+		if (beganMaze){
+			turnWallsRed();
 			document.getElementById("status").innerHTML = "YOU LOSE: YOU LEFT THE MAZE";
+			removeListeners();
 		}
 	}
 
 	function removeListeners(){
+		for(i=0;i<boundaries.length;i++){
+			boundaries[i].removeEventListener("mouseover", turnWallsRed);
+		}
+		maze.removeEventListener("mouseleave", exitMazeMessage);
+		start.removeEventListener("mouseover", changeBeganMazeValue);
+		end.removeEventListener("mouseover", changeEndedMazeValue);
+	}
 
+
+	for (i=0;i<boundaries.length;i++){
+		boundaries[i].addEventListener("mouseover", turnWallsRed);
 	}
 
 	start.addEventListener("mouseover", changeBeganMazeValue);
@@ -74,5 +85,5 @@ window.onload  = function(){
 
 	end.addEventListener("mouseover", changeEndedMazeValue);
 
-	maze.onmouseleave = exitMazeMessage;
+	maze.addEventListener("mouseleave", exitMazeMessage);
 }
